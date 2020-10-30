@@ -1,0 +1,116 @@
+% !TeX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[9pt]{article}
+\usepackage{hyperref}
+\usepackage{ulem} 
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{color,soul}
+\usepackage{inputenc}
+\usepackage[margin=2.75cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% TODO Modificare questi parametri per scrivere un bash più bello
+
+\lstset{basicstyle=\ttfamily,
+	showstringspaces=false,
+	commentstyle=\color{blue},
+	keywordstyle=\color{red}
+}
+\lstset{
+	language=bash,
+	basicstyle=\ttfamily
+}
+
+\begin{document}
+
+\title{Shell Scripting 2020: Week 1}
+\author{Stefan Ciprian Voinea}
+\maketitle
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=12cm]{autoconfiguration.png}
+%	\caption{IPv6 Autoconfiguration example}
+%	\label{fig:autoconfig}
+%\end{figure}
+
+\begin{enumerate}
+	\item \textbf{Directory setup}
+		\begin{lstlisting}[language=bash]
+mkdir ShellScripting2019
+cd ShellScripting2019
+mkdir Week1
+cd Week1
+		\end{lstlisting}
+
+	\item \textbf{Identity shift}
+		\begin{itemize}
+			\item alias for \texttt{ls}:
+			\begin{lstlisting}[language=bash]
+alias show-files-here=ls
+			\end{lstlisting}
+			\item for the definition of \texttt{cman} command I wrote a simple script that opens firefox and a website that contains the manual of linux commands:
+			\begin{lstlisting}[language=bash]
+url='https://man.cx/'
+firefox $url$1 
+			\end{lstlisting}
+			I set the alias with this command:
+			\begin{lstlisting}[language=bash]
+alias cman=./task2.sh
+			\end{lstlisting}
+		\end{itemize}
+
+
+	% TODO DA FARE ALL'INTERNO DEL DIPARTIMENTO O DA CASA CON SSH
+	\item \hl{\textbf{(NON)-logins}}
+		\begin{lstlisting}[language=bash]
+		
+		\end{lstlisting}
+
+	% TODO DA FARE ALL'INTERNO DEL DIPARTIMENTO O DA CASA CON SSH
+	\item \hl{\textbf{Enter RSYNC}}
+		\begin{lstlisting}[language=bash]
+		\end{lstlisting}
+
+	\item \textbf{Time and Date}\\
+		This is the command:
+		\begin{lstlisting}[language=bash]
+date +%A.%Y.%m.%d 
+		\end{lstlisting}
+		And this is the output:
+		\begin{lstlisting}[language=bash]
+Friday.2020.10.30
+		\end{lstlisting}
+		
+	\item \textbf{Inserting date}
+		The command that is contained in the file \texttt{task6.sh}:
+		\begin{lstlisting}[language=bash,breaklines=true]
+echo "rsync --archive /cs/home/tkt_cam/public_html/$(date +%Y/%m/%d)/~/ShellScripting2019/Week1/$(date +%A.%Y.%m.%d)"
+		\end{lstlisting}
+		
+	\item \textbf{Two at once}\\
+		By using \texttt{command >out 2>error} I can direct the \texttt{stdout} to the file \texttt{out} and the \texttt{stderr} to the file \texttt{error}.\\
+		This command works, does not show any output because it is written in the \texttt{out} file.
+		\begin{lstlisting}[language=bash]
+ls >out 2>error
+		\end{lstlisting}
+		This command doesn't works because the \texttt{ghost\_directory} does not exist.
+		There is no output output because it is written in the \texttt{error} file.
+		\begin{lstlisting}[language=bash]
+ls ghost_directoy >out 2>error
+		\end{lstlisting}
+		Content on error file:
+		\begin{lstlisting}[language=bash]
+ls: cannot access 'ghost_directory': No such file or directory
+		\end{lstlisting}
+		
+	\item \textbf{Hey! What about STDIN?}\\
+		As explained by the command \texttt{man cat}: \texttt{cat - concatenate files and print on the standard output}.
+		This means that if I type \texttt{cat string}, it will print my string when I press enter, while if I type \texttt{cat filename}, it will print the contents of the file.
+	
+\end{enumerate}
+
+\end{document}
