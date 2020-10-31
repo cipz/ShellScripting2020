@@ -67,12 +67,68 @@ alias cman=./task2.sh
 	% TODO DA FARE ALL'INTERNO DEL DIPARTIMENTO O DA CASA CON SSH
 	\item \hl{\textbf{(NON)-logins}}
 		\begin{lstlisting}[language=bash]
-		
+stefvoin@melkki:~/Desktop$ echo $SHELL
+/bin/bash		
 		\end{lstlisting}
 
-	% TODO DA FARE ALL'INTERNO DEL DIPARTIMENTO O DA CASA CON SSH
-	\item \hl{\textbf{Enter RSYNC}}
-		\begin{lstlisting}[language=bash]
+	\item \textbf{Enter RSYNC}
+		I executed these commands in \texttt{ssh}.
+		\begin{lstlisting}[language=bash,breaklines=true]
+# At first the directory is empty
+stefvoin@melkki:~/Desktop$ ls ShellScripting2020/Week1/
+
+# When I execute rsync without --stats there is no output, the target directory is just populated
+stefvoin@melkki:~/Desktop$ rsync --archive /cs/home/tkt_cam/public_html/2018/12/01/ ShellScripting2020/Week1/
+# The contents show all the files in the given folder to sync
+stefvoin@melkki:~/Desktop$ ls ShellScripting2020/Week1/
+201812010000.jpg  201812010300.jpg  201812010600.jpg  201812010900.jpg  201812011200.jpg  201812011500.jpg  201812011800.jpg  201812012100.jpg
+201812010100.jpg  201812010400.jpg  201812010700.jpg  201812011000.jpg  201812011300.jpg  201812011600.jpg  201812011900.jpg  201812012200.jpg
+201812010200.jpg  201812010500.jpg  201812010800.jpg  201812011100.jpg  201812011400.jpg  201812011700.jpg  201812012000.jpg  201812012300.jpg
+
+# If I remove one file and execute rsync again, there will be no output, the missing file will just be restored
+stefvoin@melkki:~/Desktop$ rm ShellScripting2020/Week1/201812010000.jpg 
+stefvoin@melkki:~/Desktop$ rsync --archive /cs/home/tkt_cam/public_html/2018/12/01/ ShellScripting2020/Week1/
+
+# When I execute rsync with --stats it gives me the information on the difference between the two directories
+stefvoin@melkki:~/Desktop$ rsync --archive /cs/home/tkt_cam/public_html/2018/12/01/ ShellScripting2020/Week1/ --stats
+
+Number of files: 25 (reg: 24, dir: 1)
+Number of created files: 0
+Number of deleted files: 0
+Number of regular files transferred: 0
+Total file size: 9,712,499 bytes
+Total transferred file size: 0 bytes
+Literal data: 0 bytes
+Matched data: 0 bytes
+File list size: 0
+File list generation time: 0.001 seconds
+File list transfer time: 0.000 seconds
+Total bytes sent: 555
+Total bytes received: 88
+
+sent 555 bytes  received 88 bytes  1,286.00 bytes/sec
+total size is 9,712,499  speedup is 15,104.98
+
+# If I delete one file and then I restore it with rsync --stats, I can see that it tells me the information about the operation
+stefvoin@melkki:~/Desktop$ rm ShellScripting2020/Week1/201812010000.jpg 
+stefvoin@melkki:~/Desktop$ rsync --archive /cs/home/tkt_cam/public_html/2018/12/01/ ShellScripting2020/Week1/ --stats
+
+Number of files: 25 (reg: 24, dir: 1)
+Number of created files: 1 (reg: 1)
+Number of deleted files: 0
+Number of regular files transferred: 1
+Total file size: 9,712,499 bytes
+Total transferred file size: 369,426 bytes
+Literal data: 369,426 bytes
+Matched data: 0 bytes
+File list size: 0
+File list generation time: 0.005 seconds
+File list transfer time: 0.000 seconds
+Total bytes sent: 370,108
+Total bytes received: 107
+
+sent 370,108 bytes  received 107 bytes  740,430.00 bytes/sec
+total size is 9,712,499  speedup is 26.23
 		\end{lstlisting}
 
 	\item \textbf{Time and Date}\\
