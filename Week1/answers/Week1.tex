@@ -1,4 +1,4 @@
-% !TeX program = pdflatex
+% !TeX program = xelatex
 % !TEX encoding = UTF-8 Unicode
 
 \documentclass[9pt]{article}
@@ -63,12 +63,17 @@ alias cman=./task2.sh
 			\end{lstlisting}
 		\end{itemize}
 
-
-	% TODO DA FARE ALL'INTERNO DEL DIPARTIMENTO O DA CASA CON SSH
 	\item \hl{\textbf{(NON)-logins}}
-		\begin{lstlisting}[language=bash]
-stefvoin@melkki:~/Desktop$ echo $SHELL
-/bin/bash		
+	
+		The \texttt{~/.bash\_aliases} file allows the system to not lose the aliases set.
+		Since Ubuntu 20.04 does not have such file, I had to create it and to activate it.
+		\begin{lstlisting}
+touch ~/.bash_aliases
+source ~/.bash_aliases
+		\end{lstlisting}
+		A useful alias that I can place in this file would be:
+		\begin{lstlisting}
+alias update='sudo -- sh -c "apt update && apt upgrade"'
 		\end{lstlisting}
 
 	\item \textbf{Enter RSYNC}
@@ -131,7 +136,8 @@ sent 370,108 bytes  received 107 bytes  740,430.00 bytes/sec
 total size is 9,712,499  speedup is 26.23
 		\end{lstlisting}
 
-	\item \textbf{Time and Date}\\
+	\item \textbf{Time and Date}
+	
 		This is the command:
 		\begin{lstlisting}[language=bash]
 date +%A.%Y.%m.%d 
@@ -142,12 +148,14 @@ Friday.2020.10.30
 		\end{lstlisting}
 		
 	\item \textbf{Inserting date}
+	
 		The command that is contained in the file \texttt{task6.sh}:
 		\begin{lstlisting}[language=bash,breaklines=true]
 echo "rsync --archive /cs/home/tkt_cam/public_html/$(date +%Y/%m/%d)/~/ShellScripting2019/Week1/$(date +%A.%Y.%m.%d)"
 		\end{lstlisting}
 		
-	\item \textbf{Two at once}\\
+	\item \textbf{Two at once}
+	
 		By using \texttt{command >out 2>error} I can direct the \texttt{stdout} to the file \texttt{out} and the \texttt{stderr} to the file \texttt{error}.\\
 		This command works, does not show any output because it is written in the \texttt{out} file.
 		\begin{lstlisting}[language=bash]
@@ -163,7 +171,8 @@ ls ghost_directoy >out 2>error
 ls: cannot access 'ghost_directory': No such file or directory
 		\end{lstlisting}
 		
-	\item \textbf{Hey! What about STDIN?}\\
+	\item \textbf{Hey! What about STDIN?}
+	
 		As explained by the command \texttt{man cat}: \texttt{cat - concatenate files and print on the standard output}.
 		This means that if I type \texttt{cat string}, it will print my string when I press enter, while if I type \texttt{cat filename}, it will print the contents of the file.
 	
