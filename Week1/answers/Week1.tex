@@ -63,7 +63,7 @@ alias cman=./task2.sh
 			\end{lstlisting}
 		\end{itemize}
 
-	\item \hl{\textbf{(NON)-logins}}
+	\item \textbf{(NON)-logins}
 	
 		The \texttt{~/.bash\_aliases} file allows the system to not lose the aliases set.
 		Since Ubuntu 20.04 does not have such file, I had to create it and to activate it.
@@ -75,6 +75,14 @@ source ~/.bash_aliases
 		\begin{lstlisting}
 alias update='sudo -- sh -c "apt update && apt upgrade"'
 		\end{lstlisting}
+
+		\newpage
+		Logging without the \texttt{bash -} command to change shell
+		
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth]{img/6_1.png}
+		\end{figure}
 
 	\item \textbf{Enter RSYNC}
 		I executed these commands in \texttt{ssh}.
