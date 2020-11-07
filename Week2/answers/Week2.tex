@@ -43,20 +43,110 @@
 	
 	\item \textbf{Pipelines}
 	
+		Contents of the \texttt{task9.sh} file:
+		\begin{lstlisting}
+# Counting all files 
+ls ~ | tee ls_output
+wc -l ls_output
+
+# Counting only folders
+ls -d */ | tee ls_output_dirs
+wc -l ls_output
+		\end{lstlisting}
+
+		Alternatively I could have used the command \texttt{ls dir > ls\_output}.
+		
 	\item \textbf{Filters}
-	
+
+		Contents of the \texttt{task10.sh} file:
+		\begin{lstlisting}
+ls ~ | grep 'e' | wc -l
+		\end{lstlisting}
+
+		Output of the execution:
+
+		\begin{lstlisting}
+$ ./task10.sh 
+5
+		\end{lstlisting}
+		
 	\item \textbf{Interlude: Bash}
 	
+	Contents of the \texttt{count-homedir.sh} file:
+	\begin{lstlisting}
+ls -p ~ | egrep -v /$ | wc -l
+	\end{lstlisting}
+
 	\item \textbf{Some Assembly required}
+	
+		Contents of the \texttt{task12\_list\_files\_subdirectories\_November\_2011.sh} file:
+
+		\begin{lstlisting}[language=bash,breaklines=true]
+# Syncing with remote directory
+rsync --archive /cs/home/tkt_cam/public_html/2011/11 ~/Desktop/ShellScripting2020/Week2/2011 --stats
+
+# Listing files, directories and subdirectories
+ls -R ~/Desktop/ShellScripting2020/Week2/2011/11
+		\end{lstlisting}
 	
 	\item \textbf{Now we want only the pictures}
 	
+		Contents of the \texttt{task13\_list\_all\_jpg\_November\_2011.sh} file:
+		\begin{lstlisting}[language=bash,breaklines=true]
+# Syncing with remote directory
+rsync --archive /cs/home/tkt_cam/public_html/2011/11 ~/Desktop/ShellScripting2020/Week2/2011 --stats
+
+# Listing files, directories and subdirectories
+ls -R ~/Desktop/ShellScripting2020/Week2/2011/11 | grep jpg
+		\end{lstlisting}
+		
+		Alternatively I could have simply called the previous script like this:
+		\begin{lstlisting}[language=bash,breaklines=true]
+task12_list_files_subdirectories_November_2011.sh | grep jpg               
+		\end{lstlisting}
+
 	\item \textbf{How many do we have so far?}
+	
+		Contents of the \texttt{task14\_count\_picture\_files.sh} file:
+		\begin{lstlisting}[language=bash,breaklines=true]
+# Syncing with remote directory
+rsync --archive /cs/home/tkt_cam/public_html/2011/11 ~/Desktop/ShellScripting2020/Week2/2011 --stats
+
+# Listing files, directories and subdirectories
+ls -R ~/Desktop/ShellScripting2020/Week2/2011/11 | grep jpg | wc -l
+		\end{lstlisting}
+
+		Alternatively I could have simply called the previous script like this:
+		\begin{lstlisting}[language=bash,breaklines=true]
+wc -l task13_list_all_jpg_November_2011.sh
+		\end{lstlisting}
 	
 	\item \textbf{Remember the backticks}
 	
+		Contents of the \texttt{task15\_list\_all\_jpg\_current\_month.sh} file:
+		\begin{lstlisting}[language=bash,breaklines=true]
+# Syncing with remote directory
+# echo `rsync --archive /cs/home/tkt_cam/public_html/$(date +%Y/%m) ~/Desktop/ShellScripting2020/Week2/$(date +%Y) --stats`
+rsync --archive /cs/home/tkt_cam/public_html/2016/11 ~/Desktop/ShellScripting2020/Week2/2016/11 --stats
+
+# Listing files, directories and subdirectories
+# echo `ls -R ~/Desktop/ShellScripting2020/Week2/$(date +%Y/%m) | grep jpg | wc -l`
+ls -R ~/Desktop/ShellScripting2020/Week2/2016/11 | grep jpg | wc -l
+		\end{lstlisting}
+
 	\item \textbf{The big brother of \texttt{ls}}
 	
+		Contents of the \texttt{task16\_find\_image\_files\_corresponding\_current\_month\_and\_count.sh} file:
+		\begin{lstlisting}[language=bash,breaklines=true]
+# Syncing with remote directory
+# echo `rsync --archive /cs/home/tkt_cam/public_html/$(date +%Y/%m) ~/Desktop/ShellScripting2020/Week2/$(date +%Y) --stats`
+rsync --archive /cs/home/tkt_cam/public_html/2016/11 ~/Desktop/ShellScripting2020/Week2/2016/11 --stats
+
+# Listing image files
+# find ~/Desktop/ShellScripting2020/Week2/$(date +%Y/%m) -name '*.jpg' -type f | wc -l
+find ~/Desktop/ShellScripting2020/Week2/2016/11 -name '*.jpg' -type f | wc -l
+		\end{lstlisting}
+
 \end{enumerate}
 
 \end{document}
