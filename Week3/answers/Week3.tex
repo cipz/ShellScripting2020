@@ -1,0 +1,198 @@
+% !TeX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[9pt]{article}
+\usepackage{hyperref}
+\usepackage{ulem} 
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{color,soul}
+\usepackage{inputenc}
+\usepackage[margin=2.75cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% TODO Modificare questi parametri per scrivere un bash più bello
+
+\lstset{basicstyle=\ttfamily,
+	showstringspaces=false,
+	commentstyle=\color{blue},
+	keywordstyle=\color{red}
+}
+% \lstset{
+% 	language=bash,
+% 	basicstyle=\ttfamily
+% }
+
+\begin{document}
+
+\title{Shell Scripting 2020: Week }
+\author{\textbf{Stefan Ciprian Voinea}\\Student number: 015383372}
+\maketitle
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=12cm]{autoconfiguration.png}
+%	\caption{IPv6 Autoconfiguration example}
+%	\label{fig:autoconfig}
+%\end{figure}
+
+\begin{enumerate}
+	
+	\setcounter{enumi}{16}
+	
+	\item \textbf{Introduction to variables}
+	
+        \begin{lstlisting}[breaklines=true]
+HISTCMD=The history number, or index in the history list, of the    current command.  If HISTCMD is unset, it loses its special properties, even if it is subsequently reset.
+HOME=The home directory of the current user; the default argument for the cd builtin command.  The value of this variable is also used when performing tilde expansion.
+PWD=The current working directory as set by the cd command.
+		\end{lstlisting}
+    
+    \item \textbf{Special Shell variables}
+    
+        Contents of the \texttt{task18\_echo.sh} file:
+        \begin{lstlisting}
+echo $@
+        \end{lstlisting}
+
+        Output of the execution:
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{img/18.png}
+        \end{figure}
+
+    \item \textbf{The difference between Bash and Bash}
+    
+        Contents of the \texttt{task19\_bash\_variables.sh} file:
+        \begin{lstlisting}
+myvar="can you see me?"
+
+echo "Variable in shell 1: $myvar"
+echo "Shell 1 PID: $$"
+
+echo ""
+
+bash -c 'echo "Variable in shell 2: $myvar" ; echo "Shell 2 PID: $$"'
+        \end{lstlisting}
+
+        Output of the execution:
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{img/19.png}
+        \end{figure}
+
+    \item \hl{\textbf{Remote invocation}}
+
+        Contents of the \texttt{task20\_remote\_invocation.sh} file:
+        \begin{lstlisting}
+ssh stefvoin@$1 $2
+        \end{lstlisting}
+
+        Output of the execution:
+
+        % \begin{figure}[h!]
+        %     \centering
+        %     \includegraphics[width=\linewidth]{img/20.png}
+        % \end{figure}
+
+    \item \textbf{Tar}
+        
+        The commands I used for creating the tars:
+        \begin{lstlisting}
+tar cf scriptz.tar.bz2 $(find ../ -type f -name "*.sh" -o -name "*.jpg")
+tar cf scriptz.tar.gz $(find ../ -type f -name "*.sh" -o -name "*.jpg")
+        \end{lstlisting}
+
+        File sizes in bytes:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{img/21_1.png}
+        \end{figure}
+
+        For creating the archives with \texttt{bzip2} ... 
+        \begin{lstlisting}[breaklines=true]
+bzip2 -c $(find ../ -type f -name "*.sh") > scriptz_arkive.bz2 | bzip2 -c $(find ../ -type f -name "*.jpg") >> scriptz_arkive.bz2
+        \end{lstlisting}
+
+        ... and gzip:
+        \begin{lstlisting}[breaklines=true]
+gzip -r -c $(find ../ -type f -name "*.sh") > scriptz_arkive.gz | gzip -c $(find ../ -type f -name "*.jpg") >> scriptz_arkive.gz
+        \end{lstlisting}
+
+    \item \textbf{Local and network file systems}
+    
+        Name of the system: \texttt{cip-tp} (\texttt{echo \$HOST})\\
+        Operating system: \texttt{Ubuntu 20.04.1 LTS} (\texttt{lsb\_release -a})\\
+        File system of the host: \texttt{ext4} (\texttt{df -Th})
+        
+    \item \textbf{Fetch and extract}
+        
+        The command I use to solve this exercise was:
+        \begin{lstlisting}[breaklines=true]
+wget -O - https://wiki.helsinki.fi/download/attachments/124126879/lost24-monitor-temps-and-fans-v2.tar.bz2 | tar -xvjf -
+        \end{lstlisting}
+
+    \item \hl{\textbf{Doing your business somewhere else}}
+    
+    \item \textbf{GREP and CUT}
+
+        Contents of the \texttt{task25\_unique\_temperatures.sh} file:
+        \begin{lstlisting}[breaklines=true]
+record_date="2011.12.25"
+workdir="/home/cip/Desktop/UNI/ShellScripting2020/Week3/lost24/monitor/$record_date"
+
+rm -f temps.txt
+rm -f temps_tmp.txt
+
+for dir in `find $workdir -type d`
+do
+    # ls $dir/hp-temps.txt
+    grep "PROCESSOR_ZONE *[0-9][0-9]C" $dir/hp-temps.txt -s | cut -b 32-34 >> temps_tmp.txt
+done
+
+sort temps_tmp.txt | uniq >> temps.txt
+
+rm temps_tmp.txt
+
+cat temps.txt
+        \end{lstlisting}
+
+        Output of the execution:
+        \begin{lstlisting}
+22C
+23C
+24C
+25C
+26C
+27C
+28C
+29C
+30C
+31C
+        \end{lstlisting}
+
+    \item \hl{\textbf{Don't run with the scissors}}
+
+        Contents of the \texttt{task26\_csv\_temp.sh} file:
+        \begin{lstlisting}
+./task25_unique_temperatures.sh
+
+echo ""
+
+# Converting the eol char in ; to separate the lines
+sed 's/C/C;/' temps.txt > temps.csv
+
+cat temps.csv
+        \end{lstlisting}
+
+    \item \hl{\textbf{Too long to read}}
+    \item \hl{\textbf{Escape as a true friend}}
+    \item \hl{\textbf{The Immelmann}}
+    \item \hl{\textbf{Testing}}
+
+\end{enumerate}
+
+\end{document}
