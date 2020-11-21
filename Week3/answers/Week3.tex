@@ -84,7 +84,7 @@ bash -c 'echo "Variable in shell 2: $myvar" ; echo "Shell 2 PID: $$"'
             \includegraphics[width=\linewidth]{img/19.png}
         \end{figure}
 
-    \item \hl{\textbf{Remote invocation}}
+    \item \textbf{Remote invocation}
 
         Contents of the \texttt{task20\_remote\_invocation.sh} file:
         \begin{lstlisting}
@@ -93,10 +93,10 @@ ssh stefvoin@$1 $2
 
         Output of the execution:
 
-        % \begin{figure}[h!]
-        %     \centering
-        %     \includegraphics[width=\linewidth]{img/20.png}
-        % \end{figure}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{img/20.png}
+        \end{figure}
 
     \item \textbf{Tar}
         
@@ -135,7 +135,12 @@ gzip -r -c $(find ../ -type f -name "*.sh") > scriptz_arkive.gz | gzip -c $(find
 wget -O - https://wiki.helsinki.fi/download/attachments/124126879/lost24-monitor-temps-and-fans-v2.tar.bz2 | tar -xvjf -
         \end{lstlisting}
 
-    \item \hl{\textbf{Doing your business somewhere else}}
+    \item \textbf{Doing your business somewhere else}
+    
+        The command I use to solve this exercise was:
+        \begin{lstlisting}[breaklines=true]
+ssh stefvoin@melkki.cs.helsinki.fi "wget -O - https://wiki.helsinki.fi/download/attachments/124126879/lost24-monitor-temps-and-fans-v2.tar.bz2" | tar -xvjf -
+        \end{lstlisting}
     
     \item \textbf{GREP and CUT}
 
@@ -174,7 +179,7 @@ cat temps.txt
 31C
         \end{lstlisting}
 
-    \item \hl{\textbf{Don't run with the scissors}}
+    \item \textbf{Don't run with the scissors}
 
         Contents of the \texttt{task26\_csv\_temp.sh} file:
         \begin{lstlisting}
@@ -182,16 +187,112 @@ cat temps.txt
 
 echo ""
 
-# Converting the eol char in ; to separate the lines
-sed 's/C/C;/' temps.txt > temps.csv
+sed 's/ +/ /g; s/\s+/,/g; s/\//,/g' temps.txt > temps.csv
 
 cat temps.csv
         \end{lstlisting}
 
-    \item \hl{\textbf{Too long to read}}
-    \item \hl{\textbf{Escape as a true friend}}
-    \item \hl{\textbf{The Immelmann}}
-    \item \hl{\textbf{Testing}}
+    \item \textbf{Too long to read}
+    
+        Output of the wrong command:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth-2cm]{img/27_1.png}
+        \end{figure}        
+
+        The command for finding all the files from 2011.11 is:
+        \begin{lstlisting}
+find lost24/monitor -wholename "*/*/hp-temps.txt"
+        \end{lstlisting}
+
+        Output of the command:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth-2cm]{img/27_2.png}
+        \end{figure}     
+    
+    \item \textbf{Escape as a true friend}
+    
+        Output of the commands:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth-2cm]{img/28.png}
+        \end{figure}
+
+    \item \textbf{The Immelmann}
+    
+        Contents of the \texttt{task29\_hipstafy.sh} file:
+        \begin{lstlisting}[breaklines=true]
+input_dir="$1"
+
+output_dir=$input_dir/OUTPUT
+mkdir -p $output_dir
+
+images=`find $input_dir -type f -name "*.jpg"`
+
+for image in $images
+do
+    image_name=`basename $image`
+    image_prefix=${image_name%.jpg}
+    output_file=$output_dir/$image_prefix-hipstah.jpg
+    echo "Converting ... $output_file" 
+    convert -sepia-tone 60% +polaroid $image $output_file 
+done
+
+echo "DONE!"
+        \end{lstlisting}    
+
+        Output of the execution:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=15cm]{img/29_1.png}
+        \end{figure}
+        \vspace{-.5cm}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=15cm]{img/29_2.png}
+        \end{figure}
+        \vspace{-.5cm}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=6.5cm]{img/29_3.png}
+        \end{figure}
+
+    \newpage
+    \item \textbf{Testing}
+    
+        Contents of the \texttt{task29\_hipstafy.sh} file:
+        \begin{lstlisting}
+dirs=`find lost24/monitor/ -type d -name "2011.11.*"`
+files=`find $dirs -type f -name "*temps.txt"`
+
+max_temp_file=""
+max_temp=0
+
+for file in $files
+do
+    temp=`grep "PROCESSOR_ZONE *[0-9][0-9]C" $file -s | cut -b 32-33`
+    
+    echo "File: $file"
+    echo "Temperature: $temp"
+
+    if [ $temp -gt $max_temp ]
+    then
+        max_temp=$temp
+        max_temp_file=$file
+    fi
+
+done
+
+echo "Max temp: $max_temp"
+echo "Max temp file: $max_temp_file"
+        \end{lstlisting}
+
+        Partial output of the execution:
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=12cm]{img/30.png}
+        \end{figure}
 
 \end{enumerate}
 

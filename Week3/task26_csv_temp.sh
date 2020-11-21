@@ -4,6 +4,6 @@
 
 echo ""
 
-sed 's/C/C;/' temps.txt > temps.csv
+sed 's/ +/ /g; s/\s+/,/g; s/\//,/g' temps.txt > temps.csv
 
 cat temps.csv
