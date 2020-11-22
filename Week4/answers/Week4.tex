@@ -9,10 +9,26 @@
 \usepackage{color,soul}
 \usepackage{inputenc}
 \usepackage[margin=2.75cm]{geometry}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
 
-% TODO Modificare questi parametri per scrivere un bash più bello
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{
+	fontsize=\small,
+	breaklines=true,
+	frame=lines,  % top and bottom rule only
+	framesep=.75em, % separation between frame and text
+	commandchars=\|\(\), % escape character and argument delimiters for commands within the verbatim
+	% commentchar=\#        % comment character
+	rulecolor=\color{Gray},
+	%
+	label=\fbox{\color{Black}data.txt},
+	labelposition=topline,
+}
 
 \lstset{basicstyle=\ttfamily,
 	showstringspaces=false,
@@ -51,34 +67,74 @@
 	
 		\newpage
 		Contents of the \texttt{task31\_shortcat.sh} file:
-		\begin{lstlisting}
-belly_lines=$1
+		\VerbatimInput{../task31_shortcat.sh}
 
-re='^[0-9]+$'
-if ! [[ $belly_lines =~ $re ]] 
-then
-    echo "That's not a number chief"
-    exit 1
-fi
+	\item \textbf{Plotting}
+	
+		Contents of the \texttt{task32\_create\_random\_data.sh} file:
+		\VerbatimInput{../task32_create_random_data.sh}
 
-if [ $belly_lines -gt 1 ]
-then
-    head -n 8 shortcat.txt
-    for i in $(seq 1 $belly_lines)
-    do 
-        sed "9q;d" shortcat.txt
-    done
-    tail -n 6 shortcat.txt
-else
-    echo "Nope"
-fi
-		\end{lstlisting}
+		Contents of the \texttt{task32\_create\_random\_data.p} file:
+		\VerbatimInput{../task32_create_random_data.p}
+		
+		\newpage
+		Output of the plot:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=14cm]{../task32_create_random_data}
+		\end{figure}
 
+	\item \textbf{Let's plot some real data points}
 
-	\item \hl{\textbf{Plotting}}
-	\item \hl{\textbf{Let's plot some real data points}}
-	\item \hl{\textbf{Let's put some context}}
-	\item \hl{\textbf{Let's generalize}}
+		Contents of the \texttt{task33\_plot\_real\_data.sh} file:
+		\VerbatimInput{../task33_plot_real_data.sh}
+
+		Contents of the \texttt{task33\_plot\_real\_data.txt} file:
+		\VerbatimInput{../task33_plot_real_data.txt}
+
+		Contents of the \texttt{task33\_plot\_real\_data.p} file:
+		\VerbatimInput{../task33_plot_real_data.p}
+		
+		Contents of the \texttt{task33\_plot\_real\_data.eps} file, output of the execution:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=10cm]{../task33_plot_real_data.eps}
+		\end{figure}		
+
+	\item \textbf{Let's put some context}
+	
+		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.sh} file:
+		\VerbatimInput{../task34_plot_min-max-temps-2011-11.sh}
+
+		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.txt} file:
+		\VerbatimInput{../task34_plot_min-max-temps-2011-11.txt}
+
+		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.p} file:
+		\VerbatimInput{../task34_plot_min-max-temps-2011-11.p}
+		
+		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.eps} file, output of the execution:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=10cm]{../task34_plot_min-max-temps-2011-11.eps}
+		\end{figure}		
+
+	\item \textbf{Let's generalize}
+	
+		Contents of the \texttt{task35\_plot\_min-max-tempsgeneralized.sh} file:
+		\VerbatimInput{../task35_plot_min-max-temps_generalized.sh}
+		
+		Contents of the \texttt{task35\_plot\_min-max-tempsgeneralized.txt} file:
+		\VerbatimInput{../task35_plot_min-max-temps_generalized.txt}
+		
+		Contents of the \texttt{task35\_plot\_min-max-tempsgeneralized.p} file:
+		\VerbatimInput{../task35_plot_min-max-temps_generalized.p}
+	
+		Contents of the \texttt{task35\_plot\_min-max-temps\_generalized.eps} file, output of the execution:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=10cm]{../task34_plot_min-max-temps_generalized.eps}
+		\end{figure}		
+	
 	\item \hl{\textbf{Let's make more refined commands}}
 	
 \end{enumerate}
