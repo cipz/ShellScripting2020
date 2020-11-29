@@ -1,0 +1,70 @@
+
+# Curve 0 of 2, 30 points
+# Curve title: "MAX Temperatures"
+# x y type
+ 1  28  i
+ 2  28  i
+ 3  29  i
+ 4  27  i
+ 5  25  i
+ 6  24  i
+ 7  25  i
+ 8  27  i
+ 9  23  i
+ 10  22  i
+ 11  24  i
+ 12  22  i
+ 13  24  i
+ 14  25  i
+ 15  20  i
+ 16  22  i
+ 17  22  i
+ 18  22  i
+ 19  23  i
+ 20  17  i
+ 21  22  i
+ 22  22  i
+ 23  23  i
+ 24  25  i
+ 25  25  i
+ 26  25  i
+ 27  26  i
+ 28  21  i
+ 29  23  i
+ 30  24  i
+
+
+# Curve 1 of 2, 30 points
+# Curve title: "MIN Temperatures"
+# x y type
+ 1  22  i
+ 2  25  i
+ 3  26  i
+ 4  22  i
+ 5  22  i
+ 6  21  i
+ 7  21  i
+ 8  22  i
+ 9  14  i
+ 10  14  i
+ 11  19  i
+ 12  18  i
+ 13  20  i
+ 14  19  i
+ 15  15  i
+ 16  15  i
+ 17  21  i
+ 18  20  i
+ 19  15  i
+ 20  11  i
+ 21  11  i
+ 22  18  i
+ 23  18  i
+ 24  20  i
+ 25  19  i
+ 26  18  i
+ 27  20  i
+ 28  18  i
+ 29  16  i
+ 30  20  i
+

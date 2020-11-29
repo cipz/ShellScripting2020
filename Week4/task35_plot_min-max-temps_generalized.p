@@ -1,5 +1,5 @@
 set term postscript eps color blacktext 'Helvetica' 24
-set output 'task34_plot_min-max-temps_generalized.eps'
+set output 'task35_plot_min-max-temps_generalized.eps'
 
 set title 'MAX and min temperatures for month in input'
 set xlabel 'Day of the month'

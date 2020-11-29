@@ -26,7 +26,7 @@
 	% commentchar=\#        % comment character
 	rulecolor=\color{Gray},
 	%
-	label=\fbox{\color{Black}data.txt},
+%	label=\fbox{\color{Black}data.txt},
 	labelposition=topline,
 }
 
@@ -42,7 +42,7 @@
 
 \begin{document}
 
-\title{Shell Scripting 2020: Week }
+\title{Shell Scripting 2020: Week 4}
 \author{\textbf{Stefan Ciprian Voinea}\\Student number: 015383372}
 \maketitle
 
@@ -82,6 +82,7 @@
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=14cm]{../task32_create_random_data}
+			\caption{Output of the plot from \texttt{task32}}
 		\end{figure}
 
 	\item \textbf{Let's plot some real data points}
@@ -95,10 +96,17 @@
 		Contents of the \texttt{task33\_plot\_real\_data.p} file:
 		\VerbatimInput{../task33_plot_real_data.p}
 		
+		The following figure is the output of the execution with the command:
+		\begin{lstlisting}
+./task33_plot_real_data.sh            
+		\end{lstlisting}
+	
+		
 		Contents of the \texttt{task33\_plot\_real\_data.eps} file, output of the execution:
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=10cm]{../task33_plot_real_data.eps}
+			\caption{Contents of the \texttt{task33\_plot\_real\_data.eps} file}
 		\end{figure}		
 
 	\item \textbf{Let's put some context}
@@ -111,6 +119,11 @@
 
 		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.p} file:
 		\VerbatimInput{../task34_plot_min-max-temps-2011-11.p}
+		
+		The following figure is the output of the execution with the command:
+		\begin{lstlisting}
+./task34_plot_min-max-temps-2011-11.sh 
+		\end{lstlisting}
 		
 		Contents of the \texttt{task34\_plot\_min-max-temps-2011-11.eps} file, output of the execution:
 		\begin{figure}[h!]
@@ -128,14 +141,42 @@
 		
 		Contents of the \texttt{task35\_plot\_min-max-tempsgeneralized.p} file:
 		\VerbatimInput{../task35_plot_min-max-temps_generalized.p}
+		
+		The following figure is the output of the execution with the command:
+		\begin{lstlisting}
+./task35_plot_min-max-temps_generalized.sh lost24/monitor/2011.11
+		\end{lstlisting}
 	
-		Contents of the \texttt{task35\_plot\_min-max-temps\_generalized.eps} file, output of the execution:
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=10cm]{../task34_plot_min-max-temps_generalized.eps}
+			\caption{Contents of the \texttt{task35\_plot\_min-max-temps\_generalized.eps} file}
 		\end{figure}		
 	
-	\item \hl{\textbf{Let's make more refined commands}}
+	\item \textbf{Let's make more refined commands}
+	
+		Contents of the \texttt{task36\_min-max-temps\_getops\_wrapper.sh} file:
+		\VerbatimInput{../task36_min-max-temps_getops_wrapper.sh}
+				
+		Contents of the \texttt{task36\_min-max-temps\_getops\_wrapper.p} file:
+		\VerbatimInput{../task36_min-max-temps_getops_wrapper.p}
+		
+		Contents of the \texttt{task36\_min-max-temps\_getops\_wrapper.txt} file:
+		\VerbatimInput{../task36_min-max-temps_getops_wrapper.txt}
+		
+		The following is the output of the execution with the command:
+		\begin{lstlisting}
+./task36_min-max-temps_getops_wrapper.sh -b lost24/monitor/2011.11 
+		\end{lstlisting}
+		
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=10cm]{../task36_min-max-temps_getops_wrapper_2011_11.eps}
+			\caption{Contents of the \texttt{task36\_min-max-temps\_getops\_wrapper\_2011\_11.eps} file}
+		\end{figure}		
+
+		Contents of the \texttt{task36\_min-max-temps\_getops\_wrapper\_ascii\_2011\_11.txt} file:
+		\VerbatimInput{../task36_min-max-temps_getops_wrapper_ascii_2011_11.txt}
 	
 \end{enumerate}
 
