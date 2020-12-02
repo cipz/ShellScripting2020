@@ -11,6 +11,24 @@
 \usepackage[margin=2.75cm]{geometry}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{
+	fontsize=\small,
+	breaklines=true,
+	frame=lines,  % top and bottom rule only
+	framesep=.75em, % separation between frame and text
+	commandchars=\|\(\), % escape character and argument delimiters for commands within the verbatim
+	% commentchar=\#        % comment character
+	rulecolor=\color{gray},
+	%
+	%	label=\fbox{\color{Black}data.txt},
+	labelposition=topline,
+}
 
 % TODO Modificare questi parametri per scrivere un bash più bello
 
