@@ -11,8 +11,24 @@
 \usepackage[margin=2.75cm]{geometry}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
 
-% TODO Modificare questi parametri per scrivere un bash più bello
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{
+	fontsize=\small,
+	breaklines=true,
+	frame=lines,  % top and bottom rule only
+	framesep=.75em, % separation between frame and text
+	commandchars=\|\(\), % escape character and argument delimiters for commands within the verbatim
+	% commentchar=\#        % comment character
+	rulecolor=\color{gray},
+	%
+	%	label=\fbox{\color{Black}data.txt},
+	labelposition=topline,
+}
 
 \lstset{basicstyle=\ttfamily,
 	showstringspaces=false,
@@ -26,7 +42,7 @@
 
 \begin{document}
 
-\title{Shell Scripting 2020: Week }
+\title{Shell Scripting 2020: Week 5}
 \author{\textbf{Stefan Ciprian Voinea}\\Student number: 015383372}
 \maketitle
 
@@ -39,10 +55,27 @@
 
 \begin{enumerate}
 	
-	\setcounter{enumi}{0}
+	\setcounter{enumi}{36}
 	
-	\item \textbf{test}
+	\item \textbf{Counting in the shell}
 	
+		Contents of the \texttt{task37\_bc\_average.sh} file:
+		\VerbatimInput{../task37_bc_average.sh}
+	
+		Output of the execution:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth]{img/task37.png}
+		\end{figure}
+		
+	
+	\item \textbf{Gone in 10 seconds}
+	
+	\item \textbf{Hipstafy-dropbox}
+	
+	\item \textbf{Summoning deamons}
+	
+
 \end{enumerate}
 
 \end{document}
