@@ -22,7 +22,7 @@
 	breaklines=true,
 	frame=lines,  % top and bottom rule only
 	framesep=.75em, % separation between frame and text
-	commandchars=\|\(\), % escape character and argument delimiters for commands within the verbatim
+	% commandchars=\|\(\), % escape character and argument delimiters for commands within the verbatim
 	% commentchar=\#        % comment character
 	rulecolor=\color{gray},
 	%
@@ -67,15 +67,70 @@
 			\centering
 			\includegraphics[width=\linewidth]{img/task37.png}
 		\end{figure}
-		
 	
+	\newpage
 	\item \textbf{Gone in 10 seconds}
 	
+		Contents of the \texttt{task38\_min\_max\_but\_faster.sh} file:
+		\VerbatimInput{../task38_min_max_but_faster.sh}
+	
+		Unfortunately I was not able to solve this exercise in order to make it run under 10 seconds.
+		I measured the run time by executing the command as:
+		\begin{lstlisting}[language=bash]
+time ./task38_min_max_but_faster.sh lost24/monitor
+		\end{lstlisting}
+	
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth-3.45cm]{img/task38_1.png}
+		\end{figure}
+	
+		\begin{quote}
+\textit{Then something happend and I got a better idea on how to execute the script, here it is ...}
+		\end{quote}
+	
+		Contents of the \texttt{task38\_min\_max\_but\_more\_and\_even\_more\_fast.sh} file:
+		\VerbatimInput{../task38_min_max_but_more_and_even_more_fast.sh}
+		
+		I measured the run time by executing the command as:
+		\begin{lstlisting}[language=bash]
+time ./task38_min_max_but_more_and_even_more_fast.sh lost24/monitor
+		\end{lstlisting}
+		
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth-3.45cm]{img/task38_2.png}
+		\end{figure}
+	
+	\newpage
 	\item \textbf{Hipstafy-dropbox}
 	
+		Contents of the \texttt{task39\_dropbox.sh} file:
+		\VerbatimInput{../task39_dropbox.sh}
+	
+		Contents of the \texttt{task39\_dropbox\_hipstafy.sh} file:
+		\VerbatimInput{../task39_dropbox_hipstafy.sh}
+		
+		
+		Example input file:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth-3cm]{../dropbox/image.jpg}
+		\end{figure}
+		
+		\newpage
+		Example output file:
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=\linewidth-3cm]{../dropbox/hipstafied/image-hipstah.jpg}
+		\end{figure}
+		
+	\newpage
 	\item \textbf{Summoning deamons}
 	
-
+		Contents of the \texttt{task40\_summon\_task39.sh} file:
+		\VerbatimInput{../task40_summon_task39.sh}
+		
 \end{enumerate}
 
 \end{document}
